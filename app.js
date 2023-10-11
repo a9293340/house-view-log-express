@@ -28,8 +28,8 @@ app.use(
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/upload", uploadRouter);
-app.use("/users", usersRouter);
+app.use("/upl/upload", uploadRouter);
+app.use("/upl/users", usersRouter);
 
 app.get("/api", (req, res) => {
 	res.sendfile("./views/index.html");
