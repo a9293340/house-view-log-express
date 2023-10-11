@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Upload</h1>
+		<input type="file" onchange="change(event)" />
+		<button onclick="getInfo()">get</button>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+
+		<script>
+			async function getInfo() {
+				console.log("bbbb");
+				console.log(await axios.get("http://localhost:5568/users/"));
+			}
+
+			async function change(event) {
+				const form = new FormData();
+				form.append("uploadedFile", event.target.files[0]);
+				form.append("path", "2D");
+				try {
+					let res = await axios.post("http://localhost:5568/upload", form);
+
+					console.log(res);
+				} catch (error) {
+					console.log(error);
+				}
+				event.target.value = "";
+			}
+		</script>
+	</body>
+</html>
